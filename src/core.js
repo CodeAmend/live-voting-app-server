@@ -11,3 +11,9 @@ export function next(state) {
     entries: entries.skip(2)
   })
 }
+
+export function vote(state, choice) {
+  return state.updateIn(
+    ['vote', 'tally', choice], 0, tick => tick + 1
+  );
+}
