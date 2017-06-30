@@ -1,4 +1,4 @@
-import { Map, fromJS } from 'immutable';
+import { Map, fromJS, List } from 'immutable';
 import { expect } from 'chai';
 
 import reducer from '../src/reducer.js';
@@ -17,7 +17,21 @@ describe("Reducer", () => {
     }))
   });
 
-  it("handles NEXT");
+  it("handles NEXT", () => {
+    const initialState = Map({
+      entries: List.of('Trainspotting', '28 Days')
+    });
+    const action = { type: 'NEXT' }
+    const nextState = reducer(initialState, action);
+
+    expect(nextState).to.equal(fromJS({
+      vote: {
+        pair: ['Trainspotting', '28 Days']
+      },
+      entries: []
+    }))
+  });
+
   it("handles VOTE");
 
 });
