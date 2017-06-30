@@ -43,6 +43,66 @@ describe("Appliction Logic", () => {
 
     });
 
+    it("puts winner of vote at end of entry", () => {
+
+      const state = Map({
+        vote: Map({
+          pair: List.of('Trainspotting', 'Eternal Sunshine'),
+          tally: Map({ 'Trainspotting': 4, 'Eternal Sunshine': 3 })
+        }),
+        entries: List.of('Shawshank', 'Amelia', '28 Days'),
+      });
+
+      const nextState = next(state);
+
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('Shawshank', 'Amelia'),
+        }),
+        entries: List.of('28 Days', 'Trainspotting'),
+      }));
+
+    });
+
+    it("puts tied votes both at end of entry", () => {
+
+      const state = Map({
+        vote: Map({
+          pair: List.of('Trainspotting', 'Eternal Sunshine'),
+          tally: Map({ 'Trainspotting': 4, 'Eternal Sunshine': 4 })
+        }),
+        entries: List.of('Shawshank', 'Amelia', '28 Days'),
+      });
+
+      const nextState = next(state);
+
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('Shawshank', 'Amelia'),
+        }),
+        entries: List.of('28 Days', 'Trainspotting', 'Eternal Sunshine'),
+      }));
+
+    });
+
+    it("Marks winner when just one entry left", () => {
+      const state = Map({
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days'),
+          tally: Map({
+            'Trainspotting': 4,
+            '28 Days': 2
+          })
+        }),
+        entries: List()
+      });
+
+      const nextState = next(state);
+
+      expect(nextState).to.equal(Map({
+          winner: 'Trainspotting'
+      }));
+    });
   });
 
   describe("vote", () => {
