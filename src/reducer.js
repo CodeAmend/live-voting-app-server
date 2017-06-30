@@ -2,6 +2,9 @@ import { setEntries, next, vote, INITIAL_STATE } from './core';
 
 export default function(state = INITIAL_STATE , action) {
 
+  console.log(state);
+  console.log(action);
+  console.log("---------------------------------");
   let nextState;
 
   switch (action.type) {

@@ -73,7 +73,7 @@ describe("Reducer", () => {
       {type: 'NEXT'}
     ];
 
-    const finalState = actions.reduce( reducer, Map() );
+    const finalState = actions.reduce( reducer, undefined ); // Map() or undefined / null
 
     expect(finalState).to.equal( fromJS({
       winner: 'Trainspotting'
