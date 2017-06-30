@@ -2,9 +2,6 @@ import { setEntries, next, vote, INITIAL_STATE } from './core';
 
 export default function(state = INITIAL_STATE , action) {
 
-  console.log(state);
-  console.log(action);
-  console.log("---------------------------------");
   let nextState;
 
   switch (action.type) {
@@ -13,10 +10,12 @@ export default function(state = INITIAL_STATE , action) {
       return setEntries(state, action.entries);
 
     case 'NEXT':
-      return next(state)
+      return next(state);
 
     case 'VOTE':
-      return vote(state, action.entry)
+      return state.update('vote', voteState => {
+        return vote(voteState, action.entry)
+      })
 
     default:
       return state;
