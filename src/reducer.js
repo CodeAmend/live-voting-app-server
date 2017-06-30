@@ -1,5 +1,4 @@
-import { Map, List } from 'immutable';
-import { setEntries, next } from './core';
+import { setEntries, next, vote } from './core';
 
 export default function(state = Map(), action) {
 
@@ -13,7 +12,10 @@ export default function(state = Map(), action) {
     case 'NEXT':
       return next(state)
 
+    case 'VOTE':
+      return vote(state, action.entry)
+      
     default:
-      return setEntries(state, List())
+      return state;
   }
 }
