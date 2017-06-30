@@ -1,6 +1,6 @@
-import { setEntries, next, vote } from './core';
+import { setEntries, next, vote, INITIAL_STATE } from './core';
 
-export default function(state = Map(), action) {
+export default function(state = INITIAL_STATE , action) {
 
   let nextState;
 
@@ -14,7 +14,7 @@ export default function(state = Map(), action) {
 
     case 'VOTE':
       return vote(state, action.entry)
-      
+
     default:
       return state;
   }
