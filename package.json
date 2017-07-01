@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "babel-node ./index.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive",
     "test:watch": "npm run test -- --watch"
   },
@@ -19,12 +20,11 @@
     "mocha": "^3.4.2"
   },
   "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "presets": ["es2015"]
   },
   "dependencies": {
     "immutable": "^3.8.1",
-    "redux": "^3.7.1"
+    "redux": "^3.7.1",
+    "socket.io": "^2.0.3"
   }
 }
