@@ -17,7 +17,6 @@ describe("Reducer", () => {
     }))
   });
 
-
   it("handles NEXT", () => {
     const initialState = fromJS({
       entries: ['Trainspotting', '28 Days']

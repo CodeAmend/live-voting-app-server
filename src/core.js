@@ -1,11 +1,9 @@
 import { List, Map } from 'immutable';
 
+// For reducer
 export const INITIAL_STATE = Map();
 
-export function setEntries(state, entries) {
-  return state.set('entries', List(entries))
-}
-
+// Helper function for NEXT
 function getWinners(vote) {
   if(!vote) return [];
   let [a, b] = vote.get('pair');
@@ -16,6 +14,12 @@ function getWinners(vote) {
   else                      return [a, b]
 }
 
+// SET_ENTRIES
+export function setEntries(state, entries) {
+  return state.set('entries', List(entries))
+}
+
+// NEXT
 export function next(state) {
   // Alter entries with winners
   const entries = state.get('entries')
@@ -35,6 +39,7 @@ export function next(state) {
 
 }
 
+// VOTE
 export function vote(voteState, choice) {
   return voteState.updateIn(
     ['tally', choice], 0, tick => tick + 1
