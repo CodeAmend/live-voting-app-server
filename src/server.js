@@ -11,6 +11,8 @@ export default function startServer(store) {
   // When user initially connects
   io.on('connection', (socket) => {
     socket.emit('state', store.getState().toJS() );
+    socket.on('action', (action) => {
+      store.dispatch.bind(store)(action)
+    });
   });
-
 }
